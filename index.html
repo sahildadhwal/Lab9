@@ -69,21 +69,21 @@
     </form>
 
     <section id="error-btns">
-      <button>Console Log</button>
-      <button>Console Error</button>
-      <button>Console Count</button>
-      <button>Console Warn</button>
-      <button>Console Assert</button>
-      <button>Console Clear</button>
-      <button>Console Dir</button>
-      <button>Console dirxml</button>
-      <button>Console Group Start</button>
-      <button>Console Group End</button>
-      <button>Console Table</button>
-      <button>Start Timer</button>
-      <button>End Timer</button>
-      <button>Console Trace</button>
-      <button>Trigger a Global Error</button>
+      <button onclick="consoleFunction(0)">Console Log</button>
+      <button onclick="consoleFunction(1)">Console Error</button>
+      <button onclick="consoleFunction(2)">Console Count</button>
+      <button onclick="consoleFunction(3)">Console Warn</button>
+      <button onclick="consoleFunction(4)">Console Assert</button>
+      <button onclick="consoleFunction(5)">Console Clear</button>
+      <button onclick="consoleFunction(6)">Console Dir</button>
+      <button onclick="consoleFunction(7)">Console dirxml</button>
+      <button onclick="consoleFunction(8)">Console Group Start</button>
+      <button onclick="consoleFunction(9)">Console Group End</button>
+      <button onclick="consoleFunction(10)">Console Table</button>
+      <button onclick="consoleFunction(11)">Start Timer</button>
+      <button onclick="consoleFunction(12)">End Timer</button>
+      <button onclick="consoleFunction(13)">Console Trace</button>
+      <button onclick="consoleFunction(14)">Trigger a Global Error</button>
     </section>
   </main>
 
@@ -102,6 +102,83 @@
 
     // Start your code here
     // You may move this JS to another file if you wish
+    let option;
+    function consoleFunction(option) {
+      // i could have made a function for each buttom click case, but I wanted to try this route.
+
+      if(option === 0){
+        // 0 Console Log
+        console.log("You pressed Console Log!");
+      }  
+      else if(option === 1){
+        // 1 Console Error
+        console.error("You pressed Console Error!")
+      }  
+      else if(option === 2){
+        // 2 Console Count
+        console.count();
+      }  
+      else if(option === 3){
+        // 3 Console Warn
+        console.warn("You pressed Console Warn!");
+      }  
+      else if(option === 4){
+        // 4 Console Assert console.assert(expression, message)
+        let x = 5;
+        let y = 5;
+        console.assert(x + y == 55, "5+5 does not equal 55");
+      }  
+      else if(option === 5){
+        // 5 Console Clear
+        console.clear();
+      }  
+      else if(option === 6){
+        // 6 Console 
+        console.dir(document.querySelector('section'));     // not 'button' bc it goes to the first instance of 'button'
+      }  
+      else if(option === 7){
+        // 7 Console dirxml
+        console.dirxml(document.querySelector('section'));  // not 'button' bc it goes to the first instance of 'button'
+      }  
+      else if(option === 8){
+        // 8 Console Group Start
+        console.group("Group Start");
+      }  
+      else if(option === 9){
+        // 9 Console Group End
+        console.groupEnd();
+      }  
+      else if(option === 10){
+        // 10 Console Table
+        console.table(
+          [{firstname:"John", lastname:"Doe"},
+          {firstname:"Shawn", lastname:"Marie"},
+          {firstname:"Katherina", lastname:"Jones"}]
+        );
+      }  
+      else if(option === 11){
+        // 11 Start Timer
+        console.time();
+      }  
+      else if(option === 12){
+        // 12 End Timer
+        console.timeEnd();
+      }  
+      else if(option === 13){
+        // 13 Console Trace
+        function one() {
+          function two() {
+            console.trace();    // two, one
+          }
+          two();
+        }
+        one();
+      }  
+      else if(option === 14){
+        // TODO: 14 Trigger a Global Error
+
+      }  
+    }
   </script>
 </body>
 
