@@ -84,10 +84,31 @@
       <button onclick="consoleFunction(12)">End Timer</button>
       <button onclick="consoleFunction(13)">Console Trace</button>
       <button onclick="consoleFunction(14)">Trigger a Global Error</button>
+
+      <button onclick="consoleFunction(-1)">Throw Error</button>
+
     </section>
   </main>
 
   <script>
+    class CustomErrors extends Error{
+      constructor(message, cause) {
+      super(message);
+      this.cause = cause;
+      this.name = 'InputError';
+    }
+  }
+
+  function isNum(n){
+    if(isNaN(n)){
+      // not a num, error
+      throw new CustomErrors("Input has Error", err);
+
+
+    }
+    //else{  // else nothing}
+  }
+
     let form = document.querySelector('form');
     form.addEventListener('submit', e => {
       e.preventDefault();
@@ -105,7 +126,6 @@
     let option;
     function consoleFunction(option) {
       // i could have made a function for each buttom click case, but I wanted to try this route.
-
       if(option === 0){
         // 0 Console Log
         console.log("You pressed Console Log!");
@@ -126,7 +146,16 @@
         // 4 Console Assert console.assert(expression, message)
         let x = 5;
         let y = 5;
-        console.assert(x + y == 55, "5+5 does not equal 55");
+        let z;
+        try{
+          z = x+y;
+          isNum(z);
+        }catch(err){
+          alert(`x + y cause an error!`);
+        } finally {
+          alert('finally sum is: 10');
+          console.assert(z == 55, "5+5 does not equal 55");
+        }
       }  
       else if(option === 5){
         // 5 Console Clear
@@ -154,7 +183,7 @@
           [{firstname:"John", lastname:"Doe"},
           {firstname:"Shawn", lastname:"Marie"},
           {firstname:"Katherina", lastname:"Jones"}]
-        );
+          );
       }  
       else if(option === 11){
         // 11 Start Timer
@@ -176,8 +205,11 @@
       }  
       else if(option === 14){
         // TODO: 14 Trigger a Global Error
-
+        
       }  
+      else{
+        throw new SyntaxError("Clicked unrecognized button"); 
+      }
     }
   </script>
 </body>
