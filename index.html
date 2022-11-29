@@ -91,23 +91,13 @@
   </main>
 
   <script>
-    class CustomErrors extends Error{
+    class DivZeroError extends Error{
       constructor(message, cause) {
-      super(message);
-      this.cause = cause;
-      this.name = 'InputError';
+        super(message);
+        this.cause = cause;
+        this.name = 'DivZeroError';
+      }
     }
-  }
-
-  function isNum(n){
-    if(isNaN(n)){
-      // not a num, error
-      throw new CustomErrors("Input has Error", err);
-
-
-    }
-    //else{  // else nothing}
-  }
 
     let form = document.querySelector('form');
     form.addEventListener('submit', e => {
@@ -116,7 +106,29 @@
       let firstNum = document.querySelector('#first-num').value;
       let secondNum = document.querySelector('#second-num').value;
       let operator = document.querySelector('#operator').value;
-      output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
+      let solution = -1;  // temp
+
+      try{  // if division check for div by zero
+        //output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
+        solution = eval(`${firstNum} ${operator} ${secondNum}`);
+        
+        if(operator == '/'){
+          if(secondNum == 0){ // div by zero ERROR EXISTS
+            throw DivZeroError("Dividing By 0 is Undefined!");
+          }
+        }
+        
+      } catch(err){
+        // div by 0 or non number input for num or denominator
+        solution = 'UNDEF';
+        console.log("Something went wrong!");
+
+      } finally{
+        // having text ruins the output box display 
+        // output.innerHTML = `Arithetic calculator solution:  ${solution}`;     // needs to be ` not '
+
+        output.innerHTML = `${solution}`;     // needs to be ` not '
+      }
     });
 
     let errorBtns = Array.from(document.querySelectorAll('#error-btns > button'));
@@ -147,15 +159,9 @@
         let x = 5;
         let y = 5;
         let z;
-        try{
-          z = x+y;
-          isNum(z);
-        }catch(err){
-          alert(`x + y cause an error!`);
-        } finally {
-          alert('finally sum is: 10');
-          console.assert(z == 55, "5+5 does not equal 55");
-        }
+        z = x+y;
+  
+        console.assert(z == 55, "5+5 does not equal 55");
       }  
       else if(option === 5){
         // 5 Console Clear
