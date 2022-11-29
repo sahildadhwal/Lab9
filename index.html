@@ -85,7 +85,7 @@
       <button onclick="consoleFunction(13)">Console Trace</button>
       <button onclick="consoleFunction(14)">Trigger a Global Error</button>
 
-      <button onclick="consoleFunction(-1)">Throw Error</button>
+      <button onclick="consoleFunction(-1)">Unrecognized Button</button>
 
     </section>
   </main>
@@ -211,10 +211,13 @@
       }  
       else if(option === 14){
         // TODO: 14 Trigger a Global Error
-        
+          //alert('Good code running when suddenly...');
+          //abooM('bad code!'); /* BAD CODE ON PURPOSE */ 
+        console.log("Global Error Detected!");
+
       }  
       else{
-        throw new SyntaxError("Clicked unrecognized button"); 
+        throw new SyntaxError("Clicked some unknown/unrecognized button"); 
       }
     }
   </script>
