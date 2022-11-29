@@ -6,4 +6,4 @@ Sahil Dadhwal
 
 TrackJS Picture:
 
-![Image](trackJS.png)
+![image](./trackJS.png)
