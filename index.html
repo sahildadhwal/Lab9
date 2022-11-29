@@ -105,9 +105,9 @@
 
 
     class DivZeroError extends Error{
-      constructor(message, cause) {
+      constructor(message){ //, cause) {
         super(message);
-        this.cause = cause;
+        //this.cause = cause;
         this.name = 'DivZeroError';
       }
     }
